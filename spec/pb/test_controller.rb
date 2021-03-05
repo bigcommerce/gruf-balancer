@@ -15,17 +15,20 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'gruf'
-require 'concurrent'
-require_relative 'balancer/version'
-require_relative 'balancer/configuration'
-require_relative 'balancer/client'
+#
+$LOAD_PATH.unshift File.expand_path(__dir__)
+require 'TestService_services_pb'
 
-module Gruf
-  ##
-  # gruf-balancer top-level module
-  #
-  module Balancer
-    extend ::Gruf::Balancer::Configuration
+class TestController < ::Gruf::Controllers::Base
+  bind ::TestService::Service
+
+  def run
+    TestResp.new(host: server_url.to_s)
+  end
+
+  private
+
+  def server_url
+    Gruf.server_binding_url
   end
 end

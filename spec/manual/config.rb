@@ -15,17 +15,26 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+require 'active_support/all'
 require 'gruf'
-require 'concurrent'
-require_relative 'balancer/version'
-require_relative 'balancer/configuration'
-require_relative 'balancer/client'
+require 'gruf/balancer'
+require_relative '../pb/test_controller'
 
-module Gruf
-  ##
-  # gruf-balancer top-level module
-  #
-  module Balancer
-    extend ::Gruf::Balancer::Configuration
-  end
+Gruf.configure do |c|
+  c.server_binding_url = ENV.fetch('GRPC_SERVER_URL', '127.0.0.1:8001')
+  c.backtrace_on_error = true
+  c.interceptors.use(
+    Gruf::Interceptors::Instrumentation::RequestLogging::Interceptor,
+    formatter: :plain,
+    log_parameters: true
+  )
 end
+
+Gruf.logger = Logger.new($stdout)
+Gruf.logger.level = Logger::Severity::INFO
+Gruf.grpc_logger = Logger.new($stdout)
+Gruf.grpc_logger.level = Logger::Severity::WARN
+Gruf.services << ::TestService::Service

@@ -25,14 +25,14 @@ Gem::Specification.new do |spec|
   spec.email         = ['splittingred@gmail.com']
   spec.licenses      = ['MIT']
 
-  spec.summary       = 'Allows for experiment-based balancing of gruf client calls'
+  spec.summary       = 'Allows for percentage-based balancing of gruf client calls'
   spec.description   = spec.summary
-  spec.homepage      = 'https://github.com/bigcommerce/gruf-scientist'
+  spec.homepage      = 'https://github.com/bigcommerce/gruf-balancer'
 
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-balancer.gemspec']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '~> 2.6', '< 3.1'
+  spec.required_ruby_version = '>= 2.6', '< 3.1'
 
   spec.add_development_dependency 'bundler-audit', '>= 0.6'
   spec.add_development_dependency 'pry', '>= 0.12'
@@ -45,6 +45,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-thread_safety', '>= 0.3'
   spec.add_development_dependency 'simplecov', '>= 0.16'
 
+  spec.add_runtime_dependency 'concurrent-ruby', '> 1'
   spec.add_runtime_dependency 'gruf', '> 2.8'
-  spec.add_runtime_dependency 'redis-namespace', '> 1.8'
 end

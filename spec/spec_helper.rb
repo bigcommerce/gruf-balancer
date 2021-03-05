@@ -15,17 +15,17 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'gruf'
-require 'concurrent'
-require_relative 'balancer/version'
-require_relative 'balancer/configuration'
-require_relative 'balancer/client'
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require_relative 'simplecov_helper'
+require 'gruf/balancer'
+require 'pry'
 
-module Gruf
-  ##
-  # gruf-balancer top-level module
-  #
-  module Balancer
-    extend ::Gruf::Balancer::Configuration
+Dir["#{File.join(__dir__, 'support')}/**/*.rb"].sort.each { |f| require f }
+
+RSpec.configure do |config|
+  config.color = true
+  config.before do
+    Gruf.logger = ::Logger.new(File::NULL) unless ENV.fetch('GRUF_DEBUG', false)
+    Gruf.grpc_logger = ::Logger.new(File::NULL) unless ENV.fetch('GRPC_DEBUG', false)
   end
 end

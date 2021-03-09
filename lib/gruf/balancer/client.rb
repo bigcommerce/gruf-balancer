@@ -43,11 +43,14 @@ module Gruf
       # @param [Float] percentage The percentage of requests to weight by (0-100)
       # @param [Hash] options Options to pass-through to the Gruf::Client
       # @param [Hash] client_options gRPC Client Options to pass-through to the Gruf::Client
+      # @param [Class] client_class The client class to use. Useful if wanting to create a Gruf::SynchronizedClient or
+      #   other derivative client
       #
-      def add_client(percentage:, options: {}, client_options: {})
+      def add_client(percentage:, options: {}, client_options: {}, client_class: nil)
+        client_class ||= ::Gruf::Client
         percentage = percentage > 100.0 ? 100.0 : percentage.to_f
         percentage = percentage < 0.0 ? 0.0 : percentage
-        cl = Gruf::Client.new(
+        cl = client_class.new(
           service: @service,
           options: @options.merge(options),
           client_options: @client_options.merge(client_options)

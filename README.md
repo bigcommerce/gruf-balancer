@@ -2,9 +2,43 @@
 
 [![CircleCI](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main.svg?style=svg)](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main) [![Gem Version](https://badge.fury.io/rb/gruf-scientist.svg)](https://badge.fury.io/rb/gruf-balancer) [![Documentation](https://inch-ci.org/github/bigcommerce/gruf-balancer.svg?branch=main)](https://inch-ci.org/github/bigcommerce/gruf-balancer?branch=main)
 
-Provides a framework for A/B testing various outbound Gruf::Client calls, letting you balance requests between multiple
-clients, methods, or such, by providing registered keys and passing requests configured on a percentage basis between
-them.
+Provides a framework for testing various outbound `Gruf::Client` calls on a percentage-basis, letting you balance 
+requests between multiple clients for testing new services, code paths, or networking operations.
+
+## Installation
+
+```ruby
+gem 'gruf-balancer'
+```
+
+## Usage
+
+Instead of creating a normal `Gruf::Client`, simply add clients to a `Gruf::Balancer::Client`, via passing in
+a percentage of requests and client options (similarly to how you'd create `Gruf::Client` objects).
+
+```ruby
+client = Gruf::Balancer::Client.new(service: MyService)
+client.add_client(percentage: 60, options: { hostname: '127.0.0.1:8000' })
+client.add_client(percentage: 40, options: { hostname: '127.0.0.1:8001' })
+# @type [Gruf::Response] resp
+resp = client.call(:GetThing, id: 123)
+```
+
+This uses a weighted random sampling algorithm under the hood to balance the requests to the method on the defined
+percentage weights. In the example above, 60% of requests would go to our service on port 8000, and 40% on port 8001.
+
+`Gruf::Balancer::Client` acts similarly to a `Gruf::Client`, in terms of its `call` method signature. It maintains
+a thread-safe pool of clients. Note, similarly to gRPC core, that clients are not fork-safe; please instantiate
+any balanced client pools _after_ forking.
+
+### Use Cases
+
+Some use cases for gruf-balancer can be:
+
+* Testing a new application service that serves the same gRPC Service, but on a different hostname
+* Testing different hostnames, routing rules, network infrastructure, or service meshes via different hostnames 
+* Testing new client options, such as timeouts, credentials, channels, or channel arguments
+* Testing new client interceptors, since they are configured per-client
 
 ## License
 

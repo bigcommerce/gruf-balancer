@@ -15,17 +15,11 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'gruf'
-require 'concurrent'
-require_relative 'balancer/version'
-require_relative 'balancer/configuration'
-require_relative 'balancer/client'
+require 'spec_helper'
+require 'gruf/balancer/version'
 
-module Gruf
-  ##
-  # gruf-balancer top-level module
-  #
-  module Balancer
-    extend ::Gruf::Balancer::Configuration
+describe 'Gruf::Balancer::VERSION' do
+  it 'has a version' do
+    expect(Gruf::Balancer::VERSION).not_to be_nil
   end
 end

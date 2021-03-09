@@ -20,10 +20,11 @@ require 'spec_helper'
 describe Gruf::Balancer::Client do
   let(:options) { {} }
   let(:client_options) { {} }
+  let(:client_class) { nil }
   let(:client) { described_class.new(service: TestService, options: options, client_options: client_options) }
 
   describe '#add_client' do
-    subject { client.add_client(percentage: percentage, options: sub_options, client_options: sub_client_options) }
+    subject { client.add_client(percentage: percentage, options: sub_options, client_options: sub_client_options, client_class: Gruf::SynchronizedClient) }
 
     let(:sub_options) { {} }
     let(:sub_client_options) { {} }
@@ -61,6 +62,16 @@ describe Gruf::Balancer::Client do
 
         expect(derived_client).to be_a(Gruf::Client)
         expect(actual_weight).to eq 1.0
+      end
+    end
+
+    context 'with a custom client class' do
+      let(:client_class) { Gruf::SynchronizedClient }
+
+      it 'creates the client with the custom class' do
+        expect { subject }.not_to raise_error
+
+        expect(derived_client).to be_a(Gruf::SynchronizedClient)
       end
     end
   end

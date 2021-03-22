@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -o errexit
+green='\033[0;32m'
+no_color='\033[0m'
+
+ok() {
+    echo -e "$green$1$no_color"
+}
+
+ok "Beginning full e2e test..."
+
+ok "Installing gems..."
+bundle install
+
+ok "Starting gruf server..."
+GRPC_SERVER_URL="127.0.0.1:8000" spec/manual/server.rb &
+server_1_pid=$!
+
+ok "Letting servers boot..."
+sleep 2
+
+ok "Beginning benchmark..."
+spec/manual/benchmark.rb
+
+ok "Tests successful! Shutting down server..."
+kill -9 $server_1_pid
+ok "Server shutdown, E2E test finished successfully."

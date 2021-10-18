@@ -1,6 +1,6 @@
 # gruf-balancer - Testing framework for Gruf Clients
 
-[![CircleCI](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main.svg?style=svg)](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main) [![Gem Version](https://badge.fury.io/rb/gruf-scientist.svg)](https://badge.fury.io/rb/gruf-balancer) [![Documentation](https://inch-ci.org/github/bigcommerce/gruf-balancer.svg?branch=main)](https://inch-ci.org/github/bigcommerce/gruf-balancer?branch=main)
+[![CircleCI](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main.svg?style=svg)](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main) [![Gem Version](https://badge.fury.io/rb/gruf-scientist.svg)](https://badge.fury.io/rb/gruf-balancer)
 
 Provides a framework for testing various outbound `Gruf::Client` calls on a percentage-basis, letting you balance 
 requests between multiple clients for testing new services, code paths, or networking operations.

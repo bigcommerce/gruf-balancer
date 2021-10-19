@@ -2,8 +2,9 @@
 
 [![CircleCI](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main.svg?style=svg)](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main) [![Gem Version](https://badge.fury.io/rb/gruf-balancer.svg)](https://badge.fury.io/rb/gruf-balancer)
 
-Provides a framework for testing various outbound `Gruf::Client` calls on a percentage-basis, letting you balance 
-requests between multiple clients for testing new services, code paths, or networking operations.
+Provides an integration for [gruf](https://github.com/bigcommerce/gruf) Ruby gRPC framework, allowing testing 
+various outbound `Gruf::Client` calls on a percentage-basis, letting you balance requests between multiple clients 
+for testing new services, code paths, or networking operations.
 
 ## Installation
 

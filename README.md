@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main.svg?style=svg)](https://circleci.com/gh/bigcommerce/gruf-balancer/tree/main) [![Gem Version](https://badge.fury.io/rb/gruf-balancer.svg)](https://badge.fury.io/rb/gruf-balancer)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/5644b038f277f345d0b3/maintainability)](https://codeclimate.com/github/bigcommerce/gruf-balancer/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/5644b038f277f345d0b3/test_coverage)](https://codeclimate.com/github/bigcommerce/gruf-balancer/test_coverage) 
+
 Provides an integration for [gruf](https://github.com/bigcommerce/gruf) Ruby gRPC framework, allowing testing 
 various outbound `Gruf::Client` calls on a percentage-basis, letting you balance requests between multiple clients 
 for testing new services, code paths, or networking operations.

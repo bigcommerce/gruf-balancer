@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-balancer.gemspec']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.7'
+  spec.required_ruby_version = '>= 3.0', '< 4'
 
   spec.add_development_dependency 'benchmark-memory', '0.1.2'
   spec.add_development_dependency 'bundler-audit', '>= 0.6'

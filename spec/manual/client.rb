@@ -19,7 +19,7 @@
 require_relative 'config'
 
 Gruf.logger.level = Logger::Severity::DEBUG
-client = Gruf::Balancer::Client.new(service: TestService)
+client = Gruf::Balancer::Client.new(service: ::TestService)
 client.add_client(percentage: 60.0, options: { hostname: '127.0.0.1:8000' })
 client.add_client(percentage: 40.0, options: { hostname: '127.0.0.1:8001' })
 
@@ -38,4 +38,3 @@ buckets.each do |host, total|
   percentage = ((total.to_f / TOTAL_RUNS.to_f) * 100.0).round(2)
   Gruf.logger.info "- #{host}: #{total} - #{percentage}%"
 end
-

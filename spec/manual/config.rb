@@ -15,10 +15,12 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+ENV['RACK_ENV'] = 'development'
+ENV['RAILS_ENV'] = 'development'
+ENV['GRUF_CONTROLLERS_PATH'] = File.join(File.dirname(File.expand_path(__dir__)), 'pb')
 require 'rubygems'
-require 'bundler'
-Bundler.setup
-require 'active_support/all'
+require 'bundler/setup'
+require 'active_support'
 require 'gruf'
 require 'gruf/balancer'
 require_relative '../pb/test_controller'
@@ -31,10 +33,10 @@ Gruf.configure do |c|
     formatter: :plain,
     log_parameters: true
   )
+  c.root_path = File.join(File.dirname(File.expand_path(__dir__)), 'pb')
 end
 
 Gruf.logger = Logger.new($stdout)
 Gruf.logger.level = Logger::Severity::INFO
 Gruf.grpc_logger = Logger.new($stdout)
 Gruf.grpc_logger.level = Logger::Severity::WARN
-Gruf.services << ::TestService::Service

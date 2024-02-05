@@ -17,4 +17,16 @@
 #
 source 'https://rubygems.org'
 
+gem 'benchmark-memory', '0.1.2'
+gem 'bundler-audit', '>= 0.6'
+gem 'pry', '>= 0.12'
+gem 'pry-byebug', '>= 3.9'
+gem 'rspec', '>= 3.8'
+gem 'rspec_junit_formatter', '>= 0.4'
+gem 'rubocop', '>= 1.0'
+gem 'rubocop-performance', '>= 0.0.1'
+gem 'rubocop-rspec', '>= 2.0'
+gem 'rubocop-thread_safety', '>= 0.3'
+gem 'simplecov', '>= 0.16'
+
 gemspec

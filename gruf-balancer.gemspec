@@ -34,18 +34,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.0', '< 4'
 
-  spec.add_development_dependency 'benchmark-memory', '0.1.2'
-  spec.add_development_dependency 'bundler-audit', '>= 0.6'
-  spec.add_development_dependency 'pry', '>= 0.12'
-  spec.add_development_dependency 'pry-byebug', '>= 3.9'
-  spec.add_development_dependency 'rspec', '>= 3.8'
-  spec.add_development_dependency 'rspec_junit_formatter', '>= 0.4'
-  spec.add_development_dependency 'rubocop', '>= 1.0'
-  spec.add_development_dependency 'rubocop-performance', '>= 0.0.1'
-  spec.add_development_dependency 'rubocop-rspec', '>= 2.0'
-  spec.add_development_dependency 'rubocop-thread_safety', '>= 0.3'
-  spec.add_development_dependency 'simplecov', '>= 0.16'
-
   spec.add_runtime_dependency 'concurrent-ruby', '> 1'
   spec.add_runtime_dependency 'gruf', '> 2.8'
+  spec.add_runtime_dependency 'rake', '>= 12.3'
 end

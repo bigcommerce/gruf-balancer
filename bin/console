@@ -19,7 +19,7 @@
 require 'bundler/setup'
 require 'gruf/balancer'
 
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__.to_s)
 
-require 'irb'
-IRB.start
+require 'pry'
+Pry.start

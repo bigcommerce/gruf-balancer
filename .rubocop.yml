@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.2
   Exclude:
     - spec/**/*
     - .bundle/**/*
@@ -7,6 +7,12 @@ AllCops:
     - vendor/**/*
     - tmp/**/*
     - log/**/*
+plugins:
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-thread_safety
 
 # Allow *VALID_CONFIG_KEYS.keys
 Lint/AmbiguousOperator:
@@ -24,27 +30,6 @@ Layout/LineLength:
 Metrics/MethodLength:
   Max: 30
 
-# New rubocop-required cops
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Lint/RaiseException:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true
-
-Style/ExponentialNotation:
-  Enabled: true
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
-
-Style/RedundantConstantBase:
-  Enabled: false
+Naming/FileName:
+  Exclude:
+    - lib/gruf-balancer.rb

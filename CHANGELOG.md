@@ -2,6 +2,9 @@ Changelog for the gruf-balancer gem.
 
 ### Pending release
 
+- Add support for Ruby 3.4
+- Drop support for Ruby 3.0, 3.1
+
 ### 0.3.0
 
 - Add support for Ruby 3.2, 3.3

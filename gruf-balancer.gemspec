@@ -15,7 +15,7 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-$LOAD_PATH.push File.expand_path('lib', __dir__)
+$LOAD_PATH.push(File.expand_path('lib', __dir__.to_s))
 require 'gruf/balancer/version'
 
 Gem::Specification.new do |spec|
@@ -30,11 +30,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/bigcommerce/gruf-balancer'
 
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-balancer.gemspec']
-  spec.require_paths = ['lib']
+  spec.require_paths = %w[lib]
+  spec.required_ruby_version = '>= 3.2', '< 4'
 
-  spec.required_ruby_version = '>= 3.0', '< 4'
-
-  spec.add_runtime_dependency 'concurrent-ruby', '> 1'
-  spec.add_runtime_dependency 'gruf', '> 2.8'
-  spec.add_runtime_dependency 'rake', '>= 12.3'
+  spec.add_dependency 'concurrent-ruby', '> 1'
+  spec.add_dependency 'gruf', '> 2.8'
+  spec.add_dependency 'logger'
+  spec.add_dependency 'rake', '>= 12.3'
 end

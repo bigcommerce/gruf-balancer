@@ -62,7 +62,7 @@ module Gruf
       #
       def reset
         VALID_CONFIG_KEYS.each do |k, v|
-          send("#{k}=", v)
+          send(:"#{k}=", v)
         end
         options
       end

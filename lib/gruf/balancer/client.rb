@@ -72,8 +72,8 @@ module Gruf
       #
       # @return [Gruf::Response]
       #
-      def call(*args, &block)
-        pick.call(*args, &block)
+      def call(*args, &)
+        pick.call(*args, &)
       end
     end
   end
